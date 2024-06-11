@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Shopbanhang.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/Layoutadmin.cshtml";
+}
+
+<div class="container">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th> Mã đơn hàng</th>
+                <th> Tên </th>
+                <th> Địa chỉ </th>
+                <th> Số điện thoại </th>
+                <th> Ngày mua hàng </th>
+                <th> Trạng thái </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="table-info">
+                    <td> @item.OrderId </td>
+                    <td> @item.FirstName @item.LastName </td>
+                    <td> @item.Address  </td>
+                    <td> @item.Phone </td>
+                    <td>  @item.OrderDate</td>
+                    <td>  @item.TransactStatu.Status</td>
+                    <td>
+                        @Html.ActionLink("Cập nhật TT", "trangthaidonhang", new { id = item.OrderId }, new { @class = "btn btn-outline-success btn-fw" })
+                        @Html.ActionLink("Chi tiét", "Details", new { id = item.OrderId }, new { @class = "btn btn-outline-danger btn-fw" })
+                        @Html.ActionLink("Xóa", "Delete", new { id = item.OrderId }, new { @class = "btn btn-outline-dark btn-fw" })
+
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+

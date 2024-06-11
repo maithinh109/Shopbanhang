@@ -1,0 +1,133 @@
+﻿@model Shopbanhang.Models.Order
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<Shopbanhang.Models.cartitem> giohang = ViewBag.giohang;
+}
+
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    
+    
+    
+    <form>
+        <div class="container">
+            <div class="checkout__form">
+                <h4>Billing Details</h4>
+                <form href="~/Checkout/create">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-6">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Fist Name<span>*</span></p>
+                                        <input type="text" name="Firstname">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Last Name<span>*</span></p>
+                                        <input type="text" name="Lastname">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="checkout__input">
+                                <p>Country<span>*</span></p>
+                                <input type="text" name="Country">
+                            </div>
+                            <div class="checkout__input">
+                                <p>Address<span>*</span></p>
+                                <input type="text" placeholder="Nhap dia chi" class="checkout__input__add" name="Address">
+
+                            </div>
+
+
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Phone<span>*</span></p>
+                                        <input type="text" name="Phone">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Email<span>*</span></p>
+                                        <input type="text" name="Email">
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="checkout__input">
+                                <p>Order notes<span>*</span></p>
+                                <input type="text" placeholder="Notes about your order, e.g. special notes for delivery.">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="checkout__order">
+                                <h4>ĐƠN HÀNG</h4>
+                                <div class="checkout__order__products">Sản Phẩm <span>Tổng Tiền</span></div>
+
+                                
+                                    @foreach (var item in giohang)
+                                    {
+                                        <ul>
+                                            <li>@item.name <span>@item.thanhtien</span></li>
+
+                                        </ul>
+                                    }
+
+
+
+                                <div class="checkout__order__total">Total <span> @giohang.Sum(m => m.thanhtien)</span></div>
+
+
+                                <div class="checkout__input__checkbox">
+                                    <label for="acc-or">
+                                        Create an account?
+                                        <input type="checkbox" id="acc-or">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adip elit, sed do eiusmod tempor incididunt
+                                    ut labore et dolore magna aliqua.
+                                </p>
+                                <div class="checkout__input__checkbox">
+                                    <label for="payment">
+                                        Check Payment
+                                        <input type="checkbox" id="payment">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <div class="checkout__input__checkbox">
+                                    <label for="paypal">
+                                        Paypal
+                                        <input type="checkbox" id="paypal">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <button type="submit" class="site-btn">PLACE ORDER</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </form>
+   
+
+
+
+   
+</div>
+}
+

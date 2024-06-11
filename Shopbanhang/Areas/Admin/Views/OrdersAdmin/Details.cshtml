@@ -1,0 +1,39 @@
+﻿@model Shopbanhang.Models.Order
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/Layoutadmin.cshtml";
+    List<Shopbanhang.Models.OrderDetail> orderDetails = ViewBag.chitiet;
+
+
+}
+
+<div class="container">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th> Mã đơn hàng</th>
+                <th> Sản Phẩm </th>
+                <th> Số Lượng </th>
+                <th> Ngày đặt hàng </th>
+                <th> Tổng tiền </th>
+                <th> Trạng thái </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in orderDetails)
+            {
+                <tr class="table-info">
+                    <td> @item.OrderDetaild </td>
+                    <td> @item.Product.ProductName </td>
+                    <td> @item.Quantity  </td>
+                    <td> @item.Order.OrderDate </td>
+                    <td>  @item.Total</td>
+                    <td> @item.Order.TransactStatu.Status</td>
+
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
